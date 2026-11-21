@@ -1,0 +1,723 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #0b1018;
+  --panel: #131c28;
+  --panel-light: #1b2736;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --border: #293647;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 7%;
+  border-bottom: 1px solid var(--border);
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.logo h1 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.logo p {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 4px 0 0;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.login-button {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 10px;
+}
+
+.login-button:hover {
+  border-color: var(--accent);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.navigation a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.navigation a:hover {
+  color: var(--accent);
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.hero {
+  padding: 90px 0 75px;
+}
+
+.hero-label,
+.section-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero h2 {
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.1;
+  margin: 25px 0;
+  letter-spacing: -2px;
+}
+
+.hero-description {
+  color: var(--muted);
+  line-height: 2;
+}
+
+.section {
+  padding: 50px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-heading h2 {
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.search-area {
+  margin: 25px 0;
+}
+
+.search-area input {
+  width: 100%;
+  padding: 16px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-area input:focus {
+  border-color: var(--accent);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filter {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.filter.active,
+.filter:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #08111a;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.equipment-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.equipment-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.equipment-image {
+  height: 180px;
+  background: var(--panel-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.equipment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  font-size: 50px;
+  color: var(--muted);
+}
+
+.equipment-info {
+  padding: 18px;
+}
+
+.category {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.category-GEAR {
+  background: #134e4a;
+  color: #5eead4;
+}
+
+.category-MAIN {
+  background: #78350f;
+  color: #fcd34d;
+}
+
+.category-SUB {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.equipment-info h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.equipment-info p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.equipment-id {
+  font-family: monospace;
+  color: var(--accent);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.build-list {
+  display: grid;
+  gap: 15px;
+}
+
+.empty-message {
+  border: 1px dashed var(--border);
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.post-panel {
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.post-panel p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.primary-button {
+  background: var(--accent);
+  color: #08111a;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  font-weight: 700;
+}
+
+.primary-button:hover {
+  filter: brightness(1.1);
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding: 35px 20px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 18px;
+  }
+
+  .navigation {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  main {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding: 55px 0;
+  }
+
+  .hero h2 {
+    letter-spacing: -1px;
+  }
+
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* 装備詳細モーダル */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal.open {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--panel-light);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 25px;
+  width: 42px;
+  height: 42px;
+}
+
+.close-button:hover {
+  border-color: var(--accent);
+}
+
+.modal-content h2 {
+  font-size: 28px;
+  margin: 15px 0 20px;
+  padding-right: 40px;
+}
+
+.detail-image {
+  height: 230px;
+  background: var(--panel-light);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.detail-image .image-placeholder {
+  font-size: 75px;
+}
+
+.detail-section {
+  margin-top: 25px;
+}
+
+.detail-section h3 {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.detail-section p {
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+.id-copy-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.id-copy-area code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--accent);
+  word-break: break-all;
+  flex: 1;
+}
+
+.copy-button {
+  background: var(--accent);
+  color: #08111a;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 700;
+}
+
+.copy-button:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 22px;
+  }
+
+  .id-copy-area {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* 装備画像 */
+
+.equipment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+}
+
+.detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
+  display: none;
+}
+
+.detail-img.visible {
+  display: block;
+}
+
+.detail-image .image-placeholder.hidden {
+  display: none;
+}
+
+/* 管理者用登録フォーム */
+
+.admin-panel[hidden] {
+  display: none !important;
+}
+
+.admin-form {
+  display: grid;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.admin-form label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  width: 100%;
+  padding: 14px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.admin-form textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.admin-form button {
+  margin-top: 15px;
+}
+
+.admin-notice {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+/* ==========================================
+   装備編集・削除ボタン
+========================================== */
+
+.admin-equipment-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.admin-equipment-actions[hidden] {
+  display: none;
+}
+
+.delete-button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
+/* ==========================================
+   画像アップロード
+========================================== */
+
+.upload-preview {
+  margin-top: 12px;
+  padding: 16px;
+  background: #131c28;
+  border: 1px solid #293647;
+  border-radius: 12px;
+}
+
+.upload-preview p {
+  margin-bottom: 12px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+#equipmentImagePreview {
+  display: block;
+  max-width: 100%;
+  width: 240px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+#equipmentImagePreview[hidden] {
+  display: none;
+}
+
+#equipmentImagePlaceholder {
+  color: #94a3b8;
+  font-size: 14px;
+  padding: 20px 0;
+}
+/* ==========================================
+   ビルド投稿フォーム
+========================================== */
+
+#buildForm {
+  margin-top: 24px;
+}
+
+#buildForm input,
+#buildForm select,
+#buildForm textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.build-card {
+  background: #131c28;
+  border: 1px solid #293647;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.build-card h3 {
+  margin: 10px 0;
+  color: #f1f5f9;
+}
+
+.build-creator {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.build-equipment {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.build-equipment-item {
+  padding: 12px;
+  background: #1b2736;
+  border-radius: 8px;
+}
+
+.build-equipment-item strong {
+  display: block;
+  color: #38bdf8;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.build-description {
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  margin-top: 16px;
+}
+
+.build-date {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 14px;
+}
+/* ==========================================
+   ビルド管理・削除ボタン
+========================================== */
+
+.build-admin-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-build-button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.delete-build-button:hover {
+  background: #b91c1c;
+}
+/* ビルド検索 */
+.build-search-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#buildSearchInput {
+  flex: 1;
+  min-width: 0;
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+#buildSearchInput:focus {
+  outline: none;
+  border-color: #60a5fa;
+}
+
+#buildSearchClear {
+  background: #475569;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#buildSearchClear:hover {
+  background: #64748b;
+}

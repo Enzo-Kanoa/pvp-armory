@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PvP ARMORY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⚔</span>
+      <div>
+        <h1>PvP ARMORY</h1>
+        <p>Minecraft PvP Database</p>
+      </div>
+    </div>
+
+    <button id="loginButton" class="login-button">
+      管理者ログイン
+    </button>
+  </header>
+
+  <nav class="navigation">
+    <a href="#equipment">装備図鑑</a>
+    <a href="#builds">ビルド一覧</a>
+    <a href="#post">ビルド投稿</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <p class="hero-label">MINECRAFT PVP DATABASE</p>
+      <h2>YOUR ARSENAL.<br>YOUR STRATEGY.</h2>
+      <p class="hero-description">
+        装備を組み合わせ、戦術を共有し、<br>
+        自分だけの戦闘スタイルを見つけよう。
+      </p>
+    </section>
+
+    <section id="equipment" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">EQUIPMENT</p>
+          <h2>装備図鑑</h2>
+        </div>
+      </div>
+
+      <div class="search-area">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="装備名・IDで検索..."
+        >
+      </div>
+
+      <div class="filter-buttons">
+        <button class="filter active" data-filter="ALL">ALL</button>
+        <button class="filter" data-filter="GEAR">GEAR</button>
+        <button class="filter" data-filter="MAIN">MAIN</button>
+        <button class="filter" data-filter="SUB">SUB</button>
+      </div>
+
+      <div id="equipmentList" class="equipment-grid">
+      </div>
+    </section>
+
+    <section id="builds" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">BUILDS</p>
+          <h2>ビルド一覧</h2>
+        </div>
+      </div>
+
+      <div class="build-search-area">
+  <input
+    type="text"
+    id="buildSearchInput"
+    placeholder="ビルド名・投稿者・装備名で検索..."
+  >
+
+  <button id="buildSearchClear" type="button">
+    検索解除
+  </button>
+</div>
+
+      <div id="buildList" class="build-list">
+        <div class="empty-message">
+          <p>まだビルドは投稿されていません。</p>
+          <p>最初のビルドを投稿してみよう！</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="post" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">CREATE BUILD</p>
+          <h2>ビルド投稿</h2>
+        </div>
+      </div>
+
+      <div class="post-panel">
+
+  <p>
+    自分の考えた装備構成を投稿して、
+    みんなと戦術を共有しよう。
+  </p>
+
+  <form id="buildForm" class="admin-form">
+
+    <label for="buildName">ビルド名</label>
+    <input
+      type="text"
+      id="buildName"
+      placeholder="例：高速突撃型ビルド"
+      maxlength="40"
+      required
+    >
+
+    <label for="buildCreator">投稿者名</label>
+    <input
+      type="text"
+      id="buildCreator"
+      placeholder="匿名"
+      maxlength="20"
+    >
+
+    <label for="buildGear">GEAR</label>
+    <select id="buildGear" required>
+      <option value="">装備を選択してください</option>
+    </select>
+
+    <label for="buildMain">MAIN</label>
+    <select id="buildMain" required>
+      <option value="">装備を選択してください</option>
+    </select>
+
+    <label for="buildSub">SUB</label>
+    <select id="buildSub" required>
+      <option value="">装備を選択してください</option>
+    </select>
+
+    <label for="buildDescription">ビルドの説明</label>
+    <textarea
+      id="buildDescription"
+      rows="4"
+      placeholder="このビルドの特徴や使い方など..."
+      maxlength="500"
+    ></textarea>
+
+    <button type="submit" class="primary-button">
+      ビルドを投稿する
+    </button>
+
+  </form>
+</div>
+    </section>
+  </main>
+
+  <!-- 装備詳細モーダル -->
+  <div id="equipmentModal" class="modal">
+    <div class="modal-content">
+      <button id="closeModal" class="close-button">×</button>
+
+      <div id="modalCategory" class="category"></div>
+
+      <h2 id="modalName"></h2>
+
+         <div class="detail-image">
+        <img id="modalImage" class="detail-img" src="" alt="装備画像">
+        <div id="modalImagePlaceholder" class="image-placeholder">⚔</div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Structure ID</h3>
+        <div class="id-copy-area">
+          <code id="modalId"></code>
+          <button id="copyIdButton" class="copy-button">
+            IDをコピー
+          </button>
+        </div>
+      </div>
+
+     
+      <div class="detail-section">
+        <h3>性能</h3>
+        <p id="modalPerformance"></p>
+      </div>
+
+      <div class="detail-section">
+        <h3>説明</h3>
+        <p id="modalDescription"></p>
+      </div>
+      <div id="adminEquipmentActions" class="admin-equipment-actions" hidden>
+  <button id="editEquipmentButton" class="primary-button">
+    この装備を編集
+  </button>
+
+  <button id="deleteEquipmentButton" class="delete-button">
+    この装備を削除
+  </button>
+</div>
+    </div>
+  </div>
+
+<!-- 管理者用装備登録画面（試作） -->
+  <section id="adminPanel" class="section admin-panel" hidden>
+    <div class="section-heading">
+      <div>
+        <p class="section-label">ADMINISTRATION</p>
+        <h2>装備登録</h2>
+      </div>
+    </div>
+
+    <form id="equipmentForm" class="admin-form">
+
+      <label for="equipmentName">装備名</label>
+      <input
+        type="text"
+        id="equipmentName"
+        placeholder="装備名を入力"
+        required
+      >
+
+      <label for="equipmentId">Structure ID</label>
+      <input
+        type="text"
+        id="equipmentId"
+        placeholder="example:weapon"
+        required
+      >
+
+      <label for="equipmentType">種類</label>
+      <select id="equipmentType" required>
+        <option value="GEAR">GEAR</option>
+        <option value="MAIN">MAIN</option>
+        <option value="SUB">SUB</option>
+      </select>
+
+      <label for="equipmentPerformance">性能</label>
+      <textarea
+        id="equipmentPerformance"
+        rows="4"
+        placeholder="性能を入力"
+        required
+      ></textarea>
+
+      <label for="equipmentDescription">説明</label>
+      <textarea
+        id="equipmentDescription"
+        rows="4"
+        placeholder="装備の説明を入力"
+      ></textarea>
+
+      <label for="equipmentImage">装備画像</label>
+
+<input
+  type="file"
+  id="equipmentImage"
+  accept="image/png,image/jpeg,image/webp"
+>
+
+<div class="upload-preview">
+  <p>画像プレビュー</p>
+
+  <img
+    id="equipmentImagePreview"
+    alt="アップロード画像のプレビュー"
+    hidden
+  >
+
+  <div id="equipmentImagePlaceholder">
+    画像が選択されていません
+  </div>
+</div>
+
+      <button type="submit" class="primary-button">
+        装備を登録
+      </button>
+    </form>
+  </section>
+
+  <footer>
+    <p>PvP ARMORY</p>
+    <p>Minecraft PvP Equipment Database</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
