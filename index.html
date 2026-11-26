@@ -161,14 +161,6 @@
       required
     >
 
-    <label for="buildCreator">投稿者名</label>
-    <input
-      type="text"
-      id="buildCreator"
-      placeholder="匿名"
-      maxlength="20"
-    >
-
     <label for="buildGear">GEAR</label>
     <select id="buildGear" required>
       <option value="">装備を選択してください</option>
@@ -232,9 +224,14 @@
       </div>
 
       <div class="detail-section">
-        <h3>説明</h3>
-        <p id="modalDescription"></p>
-      </div>
+  <h3>説明</h3>
+  <p id="modalDescription"></p>
+</div>
+
+<div class="detail-section">
+  <h3>追加者</h3>
+  <p id="modalAddedBy"></p>
+</div>
       <div id="adminEquipmentActions" class="admin-equipment-actions" hidden>
   <button id="editEquipmentButton" class="primary-button">
     この装備を編集
@@ -356,14 +353,27 @@
       required
     >
 
-    <label for="authPassword">パスワード</label>
-    <input
-      type="password"
-      id="authPassword"
-      placeholder="6文字以上"
-      minlength="6"
-      required
-    >
+    
+<label for="authPassword">パスワード</label>
+
+<div class="password-input-area">
+  <input
+    type="password"
+    id="authPassword"
+    placeholder="6文字以上"
+    minlength="6"
+    required
+  >
+
+  <button
+    type="button"
+    class="password-toggle"
+    data-target="authPassword"
+    aria-label="パスワードを表示"
+  >
+    👁
+  </button>
+</div>
 
     <button type="button" id="registerButton" class="primary-button">
       新規登録

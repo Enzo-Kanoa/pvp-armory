@@ -797,3 +797,58 @@ footer {
 .hidden {
   display: none !important;
 }
+
+
+.password-input-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-area input {
+  width: 100%;
+  padding-right: 48px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.password-input-area {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-area input {
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 50px;
+}
+
+.password-input-area .password-toggle {
+  display: flex !important;
+  position: absolute;
+  z-index: 10;
+  top: 18%;
+  right: 8px;
+  transform: translateY(-50%);
+
+  width: 36px !important;
+  height: 36px;
+  padding: 0 !important;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 20px;
+  cursor: pointer;
+}

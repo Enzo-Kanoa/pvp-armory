@@ -611,6 +611,9 @@ function openEquipmentDetail(item) {
   modalPerformance.textContent = item.performance;
   modalDescription.textContent = item.description;
 
+  document.getElementById("modalAddedBy").textContent =
+  item.addedBy || "不明";
+
   if (item.image) {
     modalImage.src = item.image;
     modalImage.alt = item.name;
@@ -816,13 +819,18 @@ equipmentForm.addEventListener("submit", async event => {
   }
 
   const newEquipment = {
-    name,
-    id,
-    type,
-    performance,
-    description,
-    image
-  };
+  name,
+  id,
+  type,
+  performance,
+  description,
+  image,
+
+  // 最初に登録した人の名前を引き継ぐ
+  addedBy: editingEquipmentId !== null
+    ? equipmentData.find(item => item.id === editingEquipmentId)?.addedBy || "不明"
+    : auth.currentUser.displayName || auth.currentUser.email
+};
 
   const oldId = editingEquipmentId;
 
@@ -1419,10 +1427,7 @@ buildForm.addEventListener("submit", async event => {
 
   const name = document.getElementById("buildName").value.trim();
 
-  const creator =
-    document.getElementById("buildCreator").value.trim() ||
-    user.displayName ||
-    "匿名";
+  const creator = user.displayName || user.email;
 
   const gearId = buildGear.value;
   const mainId = buildMain.value;
@@ -1732,4 +1737,32 @@ document.addEventListener("click", event => {
   ) {
     hamburgerMenu.classList.add("hidden");
   }
+});
+
+
+// ==========================================
+// パスワード表示・非表示
+// ==========================================
+
+document.querySelectorAll(".password-toggle").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const targetId = button.dataset.target;
+    const passwordInput = document.getElementById(targetId);
+
+    if (!passwordInput) return;
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      button.textContent = "🙈";
+      button.setAttribute("aria-label", "パスワードを隠す");
+    } else {
+      passwordInput.type = "password";
+      button.textContent = "👁";
+      button.setAttribute("aria-label", "パスワードを表示");
+    }
+
+  });
+
 });
