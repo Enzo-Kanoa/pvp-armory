@@ -9,18 +9,34 @@
 <body>
 
   <header class="header">
-    <div class="logo">
-      <span class="logo-icon">⚔</span>
-      <div>
-        <h1>PvP ARMORY</h1>
-        <p>Minecraft PvP Database</p>
-      </div>
+  <div class="logo">
+    <span class="logo-icon">⚔</span>
+    <div>
+      <h1>PvP ARMORY</h1>
+      <p>Minecraft PvP Database</p>
     </div>
+  </div>
 
+  <div class="header-actions">
     <button id="loginButton" class="login-button">
-      管理者ログイン
+      ログイン / 新規登録
     </button>
-  </header>
+
+    <button id="menuButton" class="menu-button" aria-label="メニューを開く">
+      ☰
+    </button>
+  </div>
+</header>
+
+<nav id="hamburgerMenu" class="hamburger-menu hidden">
+  <a href="#equipment">装備</a>
+  <a href="#builds">ビルド</a>
+  <a href="#post">ビルド追加</a>
+  <a href="#likedBuilds">いいねしたビルド</a>
+  <a href="#equipmentPost" id="adminMenuLink" class="hidden">
+    装備追加
+  </a>
+</nav>
 
   <nav class="navigation">
     <a href="#equipment">装備図鑑</a>
@@ -85,6 +101,15 @@
   </button>
 </div>
 
+<div class="build-sort-area">
+  <label for="buildSort">並び替え：</label>
+
+  <select id="buildSort">
+    <option value="likes">いいね順</option>
+    <option value="newest" selected>新しい順</option>
+    <option value="oldest">古い順</option>
+  </select>
+</div>
       <div id="buildList" class="build-list">
         <div class="empty-message">
           <p>まだビルドは投稿されていません。</p>
@@ -92,6 +117,23 @@
         </div>
       </div>
     </section>
+
+<section id="likedBuilds" class="section">
+
+  <div class="section-heading">
+    <div>
+      <p class="section-label">FAVORITES</p>
+      <h2>いいねしたビルド</h2>
+    </div>
+  </div>
+
+  <div id="likedBuildList" class="build-list">
+    <div class="empty-message">
+      <p>いいねしたビルドはまだありません。</p>
+    </div>
+  </div>
+
+</section>
 
     <section id="post" class="section">
       <div class="section-heading">
@@ -207,6 +249,9 @@
 
 <!-- 管理者用装備登録画面（試作） -->
   <section id="adminPanel" class="section admin-panel" hidden>
+
+    <div id="equipmentPost"></div>
+    
     <div class="section-heading">
       <div>
         <p class="section-label">ADMINISTRATION</p>
@@ -281,12 +326,65 @@
       </button>
     </form>
   </section>
+  
+<!-- アカウント画面 -->
+<section id="authPanel" class="section post-panel" hidden>
+  <div class="section-heading">
+    <div>
+      <p class="section-label">ACCOUNT</p>
+      <h2>アカウント</h2>
+    </div>
+  </div>
+
+  <p id="authStatus">ログインしていません。</p>
+
+  <form id="authForm" class="admin-form">
+
+    <label for="authUsername">ユーザー名（新規登録時）</label>
+    <input
+      type="text"
+      id="authUsername"
+      placeholder="ユーザー名"
+      maxlength="20"
+    >
+
+    <label for="authEmail">メールアドレス</label>
+    <input
+      type="email"
+      id="authEmail"
+      placeholder="example@email.com"
+      required
+    >
+
+    <label for="authPassword">パスワード</label>
+    <input
+      type="password"
+      id="authPassword"
+      placeholder="6文字以上"
+      minlength="6"
+      required
+    >
+
+    <button type="button" id="registerButton" class="primary-button">
+      新規登録
+    </button>
+
+    <button type="button" id="authLoginButton" class="primary-button">
+      ログイン
+    </button>
+
+    <button type="button" id="logoutButton" class="delete-button" hidden>
+      ログアウト
+    </button>
+
+  </form>
+</section>
 
   <footer>
     <p>PvP ARMORY</p>
     <p>Minecraft PvP Equipment Database</p>
   </footer>
 
-  <script src="script.js"></script>
+ <script type="module" src="script.js"></script>
 </body>
 </html>
